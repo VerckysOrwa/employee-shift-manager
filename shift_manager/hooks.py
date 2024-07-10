@@ -133,23 +133,29 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"shift_manager.tasks.all"
-# 	],
-# 	"daily": [
-# 		"shift_manager.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"shift_manager.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"shift_manager.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"shift_manager.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+    # 	"all": [
+    # 		"shift_manager.tasks.all"
+    # 	],
+    # "daily": [
+    # 	"shift_manager.tasks.daily"
+    # ],
+    # 	"hourly": [
+    # 		"shift_manager.tasks.hourly"
+    # 	],
+    # 	"weekly": [
+    # 		"shift_manager.tasks.weekly"
+    # 	],
+    # 	"monthly": [
+    # 		"shift_manager.tasks.monthly"
+    # 	],
+
+    "cron": {
+        "30 00 * * *": [
+            "shift_manager.shift_manager.report.schedule_report.schedule_report.auto_mail_report"
+        ]
+    }
+}
 
 # Testing
 # -------
@@ -227,3 +233,11 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+# In shift_manager/hooks.py
+fixtures = [
+    "Client Script",
+    "Custom Field",
+    "Property Setter",
+    "Print Format",
+    "Report"
+]

@@ -1,0 +1,24 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Shift Scheduler",
+  "enabled": 1,
+  "modified": "2024-07-09 21:01:41.138949",
+  "module": "Shift Manager",
+  "name": "Shift Scheduler",
+  "script": "frappe.ui.form.on(\"Shift Scheduler Table\", {\n  employee_id: function(frm, cdt, cdn) {\n    console.log(\"employee_id changed\");\n  },\n  refresh: function(frm) {\n    console.log(\"form refreshed\");\n  }\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Employee Shift",
+  "enabled": 1,
+  "modified": "2024-07-09 23:14:43.471147",
+  "module": "Shift Manager",
+  "name": "Employee Shift",
+  "script": "frappe.listview_settings['Employee Shift'] = {\n    onload: function(listview) {\n        listview.page.add_inner_button(__('Schedule Batch'), function() {\n            showScheduleDialog(listview);\n        });\n    }\n};\n\nfunction showScheduleDialog(listview) {\n    let selectedEmployees = [];\n\n    let d = new frappe.ui.Dialog({\n        title: 'Schedule Batch',\n        fields: [\n            {\n                label: 'Employee',\n                fieldname: 'employee',\n                fieldtype: 'Link',\n                options: 'Employee',\n                get_query: () => {\n                    return {\n                        filters: {\n                            name: ['not in', selectedEmployees]\n                        }\n                    };\n                },\n                onchange: () => {\n                    let value = d.get_value('employee');\n                    if (value && !selectedEmployees.includes(value)) {\n                        selectedEmployees.push(value);\n                        d.set_value('employee', '');\n                        d.set_value('selected_employees', selectedEmployees.join(', '));\n                    }\n                }\n            },\n            {\n                label: 'Selected Employees',\n                fieldname: 'selected_employees',\n                fieldtype: 'Small Text',\n                read_only: 1\n            },\n            {\n                label: 'From Date',\n                fieldname: 'from_date',\n                fieldtype: 'Date',\n                reqd: 1\n            },\n            {\n                label: 'To Date',\n                fieldname: 'to_date',\n                fieldtype: 'Date',\n                reqd: 1\n            },\n            {\n                label: 'Shift',\n                fieldname: 'shift',\n                fieldtype: 'Link',\n                options: 'Shift',\n                reqd: 1\n            }\n        ],\n        primary_action_label: 'Schedule',\n        primary_action(values) {\n            if (selectedEmployees.length === 0) {\n                frappe.msgprint('Please select at least one employee.');\n                return;\n            }\n            frappe.call({\n                method: 'shift_manager.services.rest.schedule_employee_shift_batch',\n                args: {\n                    employees: selectedEmployees,\n                    from_date: values.from_date,\n                    to_date: values.to_date,\n                    shift: values.shift\n                },\n                callback: function(r) {\n                    if (r.message) {\n                        frappe.show_alert({\n                            message: __('Batch scheduled successfully'),\n                            indicator: 'green'\n                        });\n                        listview.refresh();\n                    }\n                }\n            });\n            d.hide();\n        }\n    });\n    \n    d.show();\n}",
+  "view": "List"
+ }
+]

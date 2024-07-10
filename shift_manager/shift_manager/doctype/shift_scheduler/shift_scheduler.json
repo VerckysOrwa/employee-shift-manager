@@ -1,0 +1,101 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{shift_name} - {location}",
+ "creation": "2024-07-09 18:03:58.846806",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "shift_name",
+  "from_time",
+  "to_time",
+  "column_break_phjd",
+  "date",
+  "location",
+  "section_break_q4j7",
+  "shifts"
+ ],
+ "fields": [
+  {
+   "fieldname": "shift_name",
+   "fieldtype": "Link",
+   "label": "Shift Name",
+   "options": "Shift",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "shifts",
+   "fieldtype": "Table",
+   "label": "Shifts",
+   "options": "Employee Shift Table"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.shift_name",
+   "fieldname": "from_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "From Time",
+   "read_only_depends_on": "eval:doc.shift_name",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.shift_name",
+   "fieldname": "to_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "To Time",
+   "read_only_depends_on": "eval:doc.shift_name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_phjd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_q4j7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Location",
+   "options": "Location",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-07-09 22:15:21.750547",
+ "modified_by": "Administrator",
+ "module": "Shift Manager",
+ "name": "Shift Scheduler",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
