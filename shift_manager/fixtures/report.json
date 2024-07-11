@@ -140,36 +140,6 @@
   "filters": [],
   "is_standard": "Yes",
   "javascript": null,
-  "json": null,
-  "letter_head": null,
-  "modified": "2024-07-10 00:27:24.120939",
-  "module": "Shift Manager",
-  "name": "Schedule Report",
-  "prepared_report": 0,
-  "query": null,
-  "ref_doctype": "Employee Shift",
-  "reference_report": null,
-  "report_name": "Schedule Report",
-  "report_script": null,
-  "report_type": "Script Report",
-  "roles": [
-   {
-    "parent": "Schedule Report",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "System Manager"
-   }
-  ]
- },
- {
-  "add_total_row": 0,
-  "columns": [],
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
-  "filters": [],
-  "is_standard": "Yes",
-  "javascript": null,
   "json": "{\"add_total_row\": 0, \"sort_by\": \"DocShare.modified\", \"sort_order\": \"desc\", \"sort_by_next\": null, \"filters\": [], \"sort_order_next\": \"desc\", \"columns\": [[\"name\", \"DocShare\"], [\"user\", \"DocShare\"], [\"share_doctype\", \"DocShare\"], [\"share_name\", \"DocShare\"], [\"read\", \"DocShare\"], [\"write\", \"DocShare\"], [\"share\", \"DocShare\"]]}",
   "letter_head": null,
   "modified": "2017-02-24 20:01:16.232286",
@@ -293,6 +263,36 @@
   "roles": [
    {
     "parent": "Permitted Documents For User",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2024-07-10 00:27:24.120939",
+  "module": "Shift Manager",
+  "name": "Schedule Report",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Employee Shift",
+  "reference_report": null,
+  "report_name": "Schedule Report",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Schedule Report",
     "parentfield": "roles",
     "parenttype": "Report",
     "role": "System Manager"

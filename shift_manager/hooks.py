@@ -239,5 +239,6 @@ fixtures = [
     "Custom Field",
     "Property Setter",
     "Print Format",
-    "Report"
+    "Report",
+    "Workspace"
 ]
